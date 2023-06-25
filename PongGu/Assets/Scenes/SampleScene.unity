@@ -1038,7 +1038,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584428120}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1050,7 +1050,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &584428123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,6 +1069,8 @@ MonoBehaviour:
   isAimingBall: 0
   AttackKey: 0
   ball: {fileID: 1273693656}
+  boundaryMin: {x: -8, y: -4, z: 0}
+  boundaryMax: {x: 0, y: 4, z: 0}
 --- !u!212 &584428124
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1172,7 +1174,7 @@ MonoBehaviour:
   CC: {fileID: 1273693658}
   lastVelocity: {x: 0, y: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  speed: 3
+  speed: 15
 --- !u!50 &1273693657
 Rigidbody2D:
   serializedVersion: 4

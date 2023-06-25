@@ -36,6 +36,6 @@ public class BallTester : MonoBehaviour
 
     public void Init(Vector3 BallRot)
     {
-        rb.velocity = new Vector2(speed * BallRot.x, speed * BallRot.y);
+        rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized*speed;
     }
 }
