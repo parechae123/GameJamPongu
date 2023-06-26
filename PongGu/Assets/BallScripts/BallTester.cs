@@ -11,6 +11,8 @@ public class BallTester : MonoBehaviour
     public Vector2 lastVelocity;
     public Vector3 startPosition;
     public float speed;
+    public bool isPlayerAtached = false;
+    public GameObject ThrowingPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,18 +26,25 @@ public class BallTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x+0.1f, Vector2.zero,0,8);
+        hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x + 0.1f, Vector2.zero, 0, 8);
         if (hit)
         {
-            Debug.Log("¥Í¿Ω");
-            rb.velocity = Vector2.ClampMagnitude(Vector2.Reflect(rb.velocity.normalized, hit.point.normalized), 3f) * 10;
-            Debug.Log(Vector2.ClampMagnitude(Vector2.Reflect(rb.velocity, hit.point), 3f) * 10);
-        }*/
+            if(hit.collider.TryGetComponent<Player>(out Player playerSCR)&&hit.collider.gameObject != ThrowingPlayer)
+            {
+                if (!isPlayerAtached)
+                {
+                    GameManager.GMinstance().GameOver(playerSCR.isPlayerOne);
+                }
+                isPlayerAtached = true;
+            }
+        }
     }
 
 
-    public void Init(Vector3 BallRot)
+    public void Init(Vector3 BallRot,GameObject throwingPlr)
     {
+        ThrowingPlayer = throwingPlr;
+        isPlayerAtached = false;
         rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized*speed;
     }
 }
