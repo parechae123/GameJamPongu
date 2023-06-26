@@ -22,20 +22,29 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (!isAimingBall)
+        if (!isAimingBall&&boundaryMax.x>transform.position.x)
         {
             rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+        }
+        else if(boundaryMax.x < transform.position.x)
+        {
+            rb.velocity = Vector2.zero;
+            if (Input.GetAxisRaw("Horizontal") < 0||(Input.GetAxisRaw("Horizontal")<0&&Input.GetAxisRaw("Vertical")!= 0)|| Input.GetAxisRaw("Vertical") != 0 && Input.GetAxisRaw("Horizontal") == 0)
+            {
+                rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+            }
         }
         if (Input.GetKey(KeyCode.Space))
         {
             BallRot+= Input.GetAxis("Vertical") * Time.deltaTime;
             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
-            ball.transform.position = new Vector3(transform.position.x + 1, BallRot + transform.position.y, transform.position.z);
+            ball.transform.position = new Vector3(transform.position.x + BC.bounds.size.x, BallRot + transform.position.y, transform.position.z);
             //얘는 각도로
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 rb.isKinematic = true;
                 BallRot = 0;
+                ball.rb.velocity = Vector2.zero;
                 rb.velocity = Vector2.zero;
                 isAimingBall = true;
             }
