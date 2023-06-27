@@ -49,6 +49,17 @@ public class GameManager : MonoBehaviour
             attackInfo.attackPlayer = attackInfo.Players[1];
         }
     }
+    public GameObject ItemTarget(GameObject playerHaveitem)
+    {
+        if (playerHaveitem != attackInfo.Players[0])
+        {
+            return attackInfo.Players[0];
+        }
+        else
+        {
+            return attackInfo.Players[1];
+        }
+    }
 }
 [System.Serializable]
 public class AttackTurns
