@@ -8,14 +8,28 @@ public class BallTester : MonoBehaviour
     public Rigidbody2D rb;
     public RaycastHit2D hit;
     public CircleCollider2D CC;
-    public float speed;
+    public Stats BallStat;
+    public Stats BallOriginStat;
     public bool isPlayerAtached = false;
     public GameObject ThrowingPlayer;
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.GMinstance().ball = this.gameObject;
+        BallStat = new Stats();
+        BallOriginStat = new Stats();
+        StatSetting();
+        GameManager.GMinstance().ballStat = BallStat;
+        GameManager.GMinstance().OriginBallStat = BallOriginStat;
+        GameManager.GMinstance().ballSR = GetComponent<SpriteRenderer>();
     }
-
+    public void StatSetting()
+    {
+        BallOriginStat.size = transform.localScale;
+        BallOriginStat.speed = 6;
+        BallStat.size = BallOriginStat.size;
+        BallStat.speed = BallOriginStat.speed;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -39,6 +53,6 @@ public class BallTester : MonoBehaviour
         GameManager.GMinstance().attackInfo.attackTurn = false;
         ThrowingPlayer = throwingPlr;
         isPlayerAtached = false;
-        rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized*speed;
+        rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized* BallStat.speed;
     }
 }

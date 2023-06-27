@@ -9,9 +9,10 @@ public class Player : MonoBehaviour
     private float playerAxis;
     public Rigidbody2D rb;
     public BoxCollider2D BC;
-    public float speed = 4;
     public bool isAimingBall = false;
     public int AttackKey;
+    public Stats nowStat;
+    public Stats originStat;
     public BallTester ball;
     public float boundaryMax;
     float ballX = 0;
@@ -30,9 +31,31 @@ public class Player : MonoBehaviour
             playerAxis = -1;
         }
         boundaryMax = (-BC.bounds.extents.x-0.08f) * playerAxis;
+
+    }
+    private void SetStats()
+    {
+        nowStat.size = transform.localScale;
+        nowStat.speed = 4;
     }
     private void Start()
     {
+        nowStat = new Stats();
+        originStat = new Stats();
+        SetStats();
+        originStat.speed = nowStat.speed;
+        originStat.size = nowStat.size;
+        if (isPlayerOne)
+        {
+            GameManager.GMinstance().plrOriginStat[0] = originStat;
+            GameManager.GMinstance().plrStat[0] = nowStat;
+        }
+        else
+        {
+            GameManager.GMinstance().plrOriginStat[1] = originStat;
+            GameManager.GMinstance().plrStat[1] = nowStat;
+        }
+        /*
         GameManager.GMinstance().attackInfo.attackTurn = true;
         if (isPlayerOne)
         {
@@ -42,7 +65,7 @@ public class Player : MonoBehaviour
         {
             GameManager.GMinstance().attackInfo.Players[1] = this.gameObject;
             GameManager.GMinstance().attackInfo.attackPlayer = this.gameObject;
-        }
+        }*/
     }
     public void Update()
     {
@@ -51,14 +74,14 @@ public class Player : MonoBehaviour
             case true:
                 if (!isAimingBall && boundaryMax > transform.position.x)
                 {
-                    rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+                    rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * nowStat.speed;
                 }
                 else if (boundaryMax < transform.position.x&& !isAimingBall)
                 {
                     rb.velocity = Vector2.zero;
                     if (Input.GetAxisRaw("Horizontal") < 0 || (Input.GetAxisRaw("Horizontal") < 0 && Input.GetAxisRaw("Vertical") != 0) || Input.GetAxisRaw("Vertical") != 0 && Input.GetAxisRaw("Horizontal") == 0)
                     {
-                        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
+                        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * nowStat.speed;
                     }
                 }
                 if (GameManager.GMinstance().attackInfo.attackPlayer == this.gameObject && GameManager.GMinstance().attackInfo.attackTurn == true)
@@ -115,14 +138,14 @@ public class Player : MonoBehaviour
             case false:
                 if (!isAimingBall && boundaryMax < transform.position.x)
                 {
-                    rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized * speed;
+                    rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized * nowStat.speed;
                 }
                 else if (boundaryMax > transform.position.x && !isAimingBall)
                 {
                     rb.velocity = Vector2.zero;
                     if (Input.GetAxisRaw("Horizontal2") > 0 || (Input.GetAxisRaw("Horizontal2") > 0 && Input.GetAxisRaw("Vertical2") != 0) || Input.GetAxisRaw("Vertical2") != 0 && Input.GetAxisRaw("Horizontal2") == 0)
                     {
-                        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized * speed;
+                        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized * nowStat.speed;
                     }
                 }
                 if (GameManager.GMinstance().attackInfo.attackPlayer == this.gameObject && GameManager.GMinstance().attackInfo.attackTurn == true)
@@ -180,4 +203,10 @@ public class Player : MonoBehaviour
 
         //1p2p 나누는 하위 클래스를 만들던지 해야할듯함
     }
+}
+[System.Serializable]
+public class Stats
+{
+    public float speed;
+    public Vector3 size;
 }

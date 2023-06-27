@@ -9,6 +9,5 @@ public class ScoreRegister : MonoBehaviour
     void Start()
     {
         UIManager.UIinstance().scoreText[boardIndex] = GetComponent<TextMeshProUGUI>();
-        Debug.Log(string.Empty);
     }
 }

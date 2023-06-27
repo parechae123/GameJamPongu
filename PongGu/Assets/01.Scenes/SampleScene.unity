@@ -316,9 +316,14 @@ MonoBehaviour:
   isPlayerOne: 0
   rb: {fileID: 0}
   BC: {fileID: 0}
-  speed: 12
   isAimingBall: 0
   AttackKey: 0
+  nowStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
+  originStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
   ball: {fileID: 1273693656}
   boundaryMax: 0
 --- !u!212 &45830046
@@ -1693,9 +1698,14 @@ MonoBehaviour:
   isPlayerOne: 1
   rb: {fileID: 0}
   BC: {fileID: 0}
-  speed: 12
   isAimingBall: 0
   AttackKey: 0
+  nowStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
+  originStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
   ball: {fileID: 1273693656}
   boundaryMax: 0
 --- !u!212 &584428124
@@ -1852,27 +1862,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 753851313}
-  - component: {fileID: 753851312}
+  - component: {fileID: 753851314}
   m_Layer: 0
-  m_Name: ItemTest
+  m_Name: ItemRespawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &753851312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753851311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bbd8cd3224e1148bebf66cb7ceb100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPlayer: {fileID: 45830042}
 --- !u!4 &753851313
 Transform:
   m_ObjectHideFlags: 0
@@ -1888,6 +1885,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &753851314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753851311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b35a060262cfc94ea4a634219c36dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aing: 
+  itemRandomValue: 0
+  ItemPosition: {x: 0, y: 0, z: 0}
+  maxPosition: {x: 7, y: 3, z: 0}
+  minPosition: {x: -7, y: -3, z: 0}
 --- !u!1 &801537089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +1938,24 @@ MonoBehaviour:
     Players:
     - {fileID: 584428120}
     - {fileID: 45830042}
+  ball: {fileID: 0}
+  ballStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
+  OriginBallStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
+  ballSR: {fileID: 0}
+  plrStat:
+  - speed: 0
+    size: {x: 0, y: 0, z: 0}
+  - speed: 0
+    size: {x: 0, y: 0, z: 0}
+  plrOriginStat:
+  - speed: 0
+    size: {x: 0, y: 0, z: 0}
+  - speed: 0
+    size: {x: 0, y: 0, z: 0}
 --- !u!4 &801537091
 Transform:
   m_ObjectHideFlags: 0
@@ -2161,6 +2193,12 @@ MonoBehaviour:
   rb: {fileID: 1273693657}
   CC: {fileID: 1273693658}
   speed: 8
+  BallStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
+  BallOriginStat:
+    speed: 0
+    size: {x: 0, y: 0, z: 0}
   isPlayerAtached: 1
   ThrowingPlayer: {fileID: 0}
 --- !u!50 &1273693657

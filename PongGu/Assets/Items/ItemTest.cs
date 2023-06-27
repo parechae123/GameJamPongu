@@ -14,10 +14,4 @@ public class ItemTest : MonoBehaviour
         ItemInfo.ItemEffect(targetPlayer);
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -5,8 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager GM;
-    public byte[] playerScore = new byte[2];//0=ÇÃ·¹ÀÌ¾î1,1= ÇÃ·¹ÀÌ¾î2
-    public AttackTurns attackInfo;//³» ÅÏ¿¡ °ø°Ý Àü¿¡´Â true¸¦, °ø°Ý ÈÄ¿¡´Â false¸¦ ¹ÝÈ¯
+    public byte[] playerScore = new byte[2];//0=ï¿½Ã·ï¿½ï¿½Ì¾ï¿½1,1= ï¿½Ã·ï¿½ï¿½Ì¾ï¿½2
+    public AttackTurns attackInfo;//ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½È¯
+    public GameObject ball;
+    public Stats ballStat;
+    public Stats OriginBallStat;
+    public SpriteRenderer ballSR;
+    [SerializeField]public Stats[] plrStat = new Stats[2];
+    [SerializeField] public Stats[] plrOriginStat = new Stats[2];
     public static GameManager GMinstance()
     {
         return GM;
@@ -38,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
         UIManager.UIinstance().scoreText[0].text = playerScore[0].ToString();
         UIManager.UIinstance().scoreText[1].text = playerScore[1].ToString();
-        //¾ÀÀüÈ¯ Ãß°¡ ÈÄ¿¡ °ø°Ý±Ç º¯°æ ÇØÁà¾ßÇÔ,attackplayerÃ¼ÀÎÁöµµ ÇÊ¿ä
+        //ï¿½ï¿½ï¿½ï¿½È¯ ï¿½ß°ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½Ý±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,attackplayerÃ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
         attackInfo.attackTurn = true;
         if (attackInfo.attackPlayer != attackInfo.Players[0])
         {
@@ -48,8 +54,23 @@ public class GameManager : MonoBehaviour
         {
             attackInfo.attackPlayer = attackInfo.Players[1];
         }
+        ResetStat();
     }
-    public GameObject ItemTarget(GameObject playerHaveitem)
+    public void ResetStat()
+    {
+        plrStat[0].size = plrOriginStat[0].size;
+        plrStat[0].speed = plrOriginStat[0].speed;
+        attackInfo.Players[0].transform.localScale = plrOriginStat[0].size;
+        plrStat[1].size = plrOriginStat[1].size;
+        plrStat[1].speed = plrOriginStat[1].speed;
+        attackInfo.Players[1].transform.localScale = plrOriginStat[1].size;
+        StopCoroutine(InvisibleBalls());
+    }
+    public void SetInvisible()
+    {
+        StartCoroutine(InvisibleBalls());
+    }
+    public GameObject ItemTargetOBJ(GameObject playerHaveitem)
     {
         if (playerHaveitem != attackInfo.Players[0])
         {
@@ -60,13 +81,57 @@ public class GameManager : MonoBehaviour
             return attackInfo.Players[1];
         }
     }
-    
-
+    public Player ItemTargetPlayerCompo(GameObject playerHaveitem) 
+    {
+        if (playerHaveitem != attackInfo.Players[0])
+        {
+            return attackInfo.Players[0].GetComponent<Player>();
+        }
+        else
+        {
+            return attackInfo.Players[1].GetComponent<Player>();
+        }
+    }
+    public void SetPlayer(GameObject player)
+    {
+        attackInfo.attackPlayer = player;
+        attackInfo.attackTurn = true;
+    }
+    public IEnumerator InvisibleBalls()
+    {
+        float timer = 0;
+        float targetTime = 2f;
+        bool needPlus = true;
+        while (true)
+        {
+            if (needPlus)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+            ballSR.color = new Color(ballSR.color.r, ballSR.color.g, ballSR.color.b, timer*(1/targetTime));
+            yield return null;
+            if (timer>=targetTime||timer<=0)
+            {
+                if (needPlus)
+                {
+                    needPlus = false;
+                }
+                else
+                {
+                    needPlus = true;
+                }
+            }
+        }
+    }
 }
 [System.Serializable]
 public class AttackTurns
 {
-    public bool attackTurn;//³» ÅÏ¿¡ °ø°Ý Àü¿¡´Â true¸¦, °ø°Ý ÈÄ¿¡´Â false¸¦ ¹ÝÈ¯
-    public GameObject attackPlayer; //°ø°Ý±ÇÀ» °¡Áø ÇÃ·¹ÀÌ¾î
-    public GameObject[] Players = new GameObject[2]; //ÇÃ·¹ÀÌ¾î Á¤º¸°ª,[0]ÇÃ·¹ÀÌ¾î1,[1]ÇÃ·¹ÀÌ¾î2
+    public bool attackTurn;//ï¿½ï¿½ ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½È¯
+    public GameObject attackPlayer; //ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
+    public GameObject[] Players = new GameObject[2]; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,[0]ï¿½Ã·ï¿½ï¿½Ì¾ï¿½1,[1]ï¿½Ã·ï¿½ï¿½Ì¾ï¿½2
 }
