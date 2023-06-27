@@ -4,10 +4,13 @@ using UnityEngine;
 using DG.Tweening;
 public class MiddleWall : MonoBehaviour
 {
-    private bool wallActive = true;
     public GameObject[] wall = new GameObject[2];
     Sequence sequence;
-    public float wallScale;
+    public GameObject rayObj;
+    public bool boundaries;
+    public LayerMask boolLayer;
+    public static int sensingNum;      //레이캐스트 감지되는 횟수
+
     GameManager GameManager => GameManager.GMinstance();
     // Start is called before the first frame update
     void Start()
@@ -18,22 +21,45 @@ public class MiddleWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        Debug.DrawRay(rayObj.transform.position, rayObj.transform.up, Color.red, 0);
+        boundaries = Physics2D.Raycast(rayObj.transform.position, rayObj.transform.up, 50, boolLayer);
+        
+        if (boundaries && sensingNum == 0)
         {
-            StartCoroutine(WallAddCollider()); 
+            sensingNum++;
+            Debug.Log("반응");
+            StartCoroutine(Wall1());
+            StartCoroutine(Wall2()); 
         }
-
+        
     }
-    public IEnumerator WallAddCollider()
+    public IEnumerator Wall1()
     {
-        for (int i = 0; i < wall.Length; i++)
+
+        GameObject temp = Instantiate(wall[1], wall[1].transform.position, wall[1].transform.rotation);
+        sequence = DOTween.Sequence();
+        sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
+        sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
+
+        yield return new WaitForSeconds(0.5f);
+        if (!temp.TryGetComponent<BoxCollider2D>(out BoxCollider2D bc2))
         {
-            wall[i].SetActive(true);
-            sequence = DOTween.Sequence();
-            sequence.Append(wall[i].transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
-            sequence.Append(wall[i].transform.DOScale(new Vector2(1, 1), 0.3f));
+            temp.AddComponent<BoxCollider2D>();
         }
-        yield return new WaitForSeconds(1);
+        
+    }
+    public IEnumerator Wall2()
+    {
+        GameObject temp = Instantiate(wall[0], wall[0].transform.position, wall[0].transform.rotation);
+        sequence = DOTween.Sequence();
+        sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
+        sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
+
+        yield return new WaitForSeconds(0.5f);
+        if (!temp.TryGetComponent<BoxCollider2D>(out BoxCollider2D bc2))
+        {
+            temp.AddComponent<BoxCollider2D>();
+        }
         
     }
 }

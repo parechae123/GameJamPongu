@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
             return attackInfo.Players[1];
         }
     }
+    
+
 }
 [System.Serializable]
 public class AttackTurns

@@ -1075,8 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92d6b958703e54d8fefafa32c20b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 1720793452}
-  wallScale: 0
+  wall:
+  - {fileID: 0}
+  ball: {fileID: 0}
 --- !u!212 &1720793454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1203,7 +1204,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 98121e79b2a343946a4e026f364e9ac8, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
