@@ -316,7 +316,7 @@ MonoBehaviour:
   isPlayerOne: 0
   rb: {fileID: 0}
   BC: {fileID: 0}
-  speed: 12
+  speed: 4
   isAimingBall: 0
   AttackKey: 0
   ball: {fileID: 1273693656}
@@ -436,10 +436,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1689,7 +1689,7 @@ MonoBehaviour:
   isPlayerOne: 1
   rb: {fileID: 0}
   BC: {fileID: 0}
-  speed: 12
+  speed: 4
   isAimingBall: 0
   AttackKey: 0
   ball: {fileID: 1273693656}
@@ -1838,6 +1838,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScore: 0000
+  attackInfo:
+    attackTurn: 0
+    attackPlayer: {fileID: 0}
+    Players:
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!4 &801537091
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,8 +2028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1273693657}
   CC: {fileID: 1273693658}
-  lastVelocity: {x: 0, y: 0}
-  startPosition: {x: 0, y: 0, z: 0}
   speed: 15
   isPlayerAtached: 1
   ThrowingPlayer: {fileID: 0}
