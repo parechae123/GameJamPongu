@@ -50,6 +50,7 @@ public class BallInvisible : ItemBase
     public override void ItemEffect(GameObject targetPlayer)
     {
         GameManager.GMinstance().SetInvisible();
+        Debug.Log("공 투명화");
     }
 }
 public class BallFaster : ItemBase
@@ -65,6 +66,7 @@ public class BallFaster : ItemBase
         /*        GameManager.GMinstance().ItemTargetOBJ(targetPlayer);*/
         //아이템 효과
         GameManager.GMinstance().ballStat.speed = GameManager.GMinstance().OriginBallStat.speed * 1.5f;
+        Debug.Log("공 가속");
     }
 }
 public class PlayerSlower : ItemBase
@@ -80,8 +82,8 @@ public class PlayerSlower : ItemBase
     {
         /*        GameManager.GMinstance().ItemTargetOBJ(targetPlayer);*/
         //아이템 효과
-        Debug.Log(GameManager.GMinstance().ItemTargetOBJ(targetPlayer));
-        Debug.Log(targetPlayer);
+        GameManager.GMinstance().ItemTargetPlrSpeed(targetPlayer).speed = GameManager.GMinstance().plrOriginStat[0].speed / 2;
+        Debug.Log("플레이어 둔화");
     }
 }
 public class WallRestore : ItemBase
@@ -98,7 +100,7 @@ public class WallRestore : ItemBase
         /*        GameManager.GMinstance().ItemTargetOBJ(targetPlayer);*/
         //아이템 효과
         Debug.Log(GameManager.GMinstance().ItemTargetOBJ(targetPlayer));
-        Debug.Log(targetPlayer);
+        Debug.Log("벽 복구");
     }
 }
 public class GenericItemTarget<T>

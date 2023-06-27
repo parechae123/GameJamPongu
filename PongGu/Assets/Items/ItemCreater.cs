@@ -27,6 +27,14 @@ public class ItemCreater : MonoBehaviour
             ItemList[i].IdentitySetting();
             Debug.Log(ItemList[i].ItemIndex);
         }
+        ItemPosition.x = Random.Range(minPosition.x, maxPosition.x);
+        ItemPosition.y = Random.Range(minPosition.y, maxPosition.y);
+        GameObject te1 = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
+        te1.GetComponent<DropedItem>().itemInfo = ItemList[2];
+        GameObject te2 = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
+        te2.GetComponent<DropedItem>().itemInfo = ItemList[2];
+        GameObject OBJTemp = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
+        OBJTemp.GetComponent<DropedItem>().itemInfo = ItemList[0];
     }
     private void Update()
     {

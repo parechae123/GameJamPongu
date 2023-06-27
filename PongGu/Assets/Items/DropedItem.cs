@@ -15,6 +15,7 @@ public class DropedItem : MonoBehaviour
             hit = Physics2D.BoxCast(transform.position, Vector2.one, 0,Vector2.zero,1,8);
             if (hit)
             {
+                Debug.Log("아이템 발동");
                 isUsed = true;
                 itemInfo.ItemEffect(hit.collider.gameObject);
                 Destroy(gameObject);

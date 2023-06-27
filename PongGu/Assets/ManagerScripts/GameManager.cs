@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public SpriteRenderer ballSR;
     [SerializeField]public Stats[] plrStat = new Stats[2];
     [SerializeField] public Stats[] plrOriginStat = new Stats[2];
+    private bool BallInvisible = true;
     public static GameManager GMinstance()
     {
         return GM;
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver(bool isPlayerOne)
     {
-        if (isPlayerOne)
+        if (!isPlayerOne)
         {
             playerScore[0] += 1;
         }
@@ -64,7 +65,9 @@ public class GameManager : MonoBehaviour
         plrStat[1].size = plrOriginStat[1].size;
         plrStat[1].speed = plrOriginStat[1].speed;
         attackInfo.Players[1].transform.localScale = plrOriginStat[1].size;
+        ballStat.speed = OriginBallStat.speed;
         StopCoroutine(InvisibleBalls());
+        BallInvisible = true;
     }
     public void SetInvisible()
     {
@@ -79,6 +82,17 @@ public class GameManager : MonoBehaviour
         else
         {
             return attackInfo.Players[1];
+        }
+    }
+    public Stats ItemTargetPlrSpeed(GameObject playerHaveitem)
+    {
+        if (playerHaveitem != attackInfo.Players[0])
+        {
+            return plrStat[0];
+        }
+        else
+        {
+            return plrStat[1];
         }
     }
     public Player ItemTargetPlayerCompo(GameObject playerHaveitem) 
@@ -99,6 +113,13 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator InvisibleBalls()
     {
+        if (!BallInvisible)
+        {
+            Debug.Log("투명화 막음");
+            yield break;
+        }
+        Debug.Log("투명화 시작");
+        BallInvisible = false;
         float timer = 0;
         float targetTime = 2f;
         bool needPlus = true;
@@ -111,6 +132,12 @@ public class GameManager : MonoBehaviour
             else
             {
                 timer -= Time.deltaTime;
+            }
+            if (BallInvisible)
+            {
+                Debug.Log("투명화 해제");
+                ballSR.color = new Color(ballSR.color.r, ballSR.color.g, ballSR.color.b, 1);
+                yield break;
             }
             ballSR.color = new Color(ballSR.color.r, ballSR.color.g, ballSR.color.b, timer*(1/targetTime));
             yield return null;
