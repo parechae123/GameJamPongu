@@ -351,10 +351,13 @@ MonoBehaviour:
   - {fileID: 8293068000700880630, guid: dc16197af77690347805974bb26f1b9f, type: 3}
   - {fileID: 6812302382684884281, guid: 272fbda72c743cd47b52016c9dac861a, type: 3}
   rayObj: {fileID: 1995990573}
+  ball: {fileID: 1507682835}
   boundaries: 0
-  boolLayer:
+  ballLayer:
     serializedVersion: 2
     m_Bits: 64
+  sensingNum: 0
+  ballPosInit: {fileID: 0}
 --- !u!4 &1836170743
 Transform:
   m_ObjectHideFlags: 0

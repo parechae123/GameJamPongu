@@ -7,9 +7,11 @@ public class MiddleWall : MonoBehaviour
     public GameObject[] wall = new GameObject[2];
     Sequence sequence;
     public GameObject rayObj;
+    public GameObject ball;
     public bool boundaries;
-    public LayerMask boolLayer;
-    public static int sensingNum;      //레이캐스트 감지되는 횟수
+    public LayerMask ballLayer;
+    public int sensingNum;      //레이캐스트 감지되는 횟수
+    public Transform ballPosInit;
 
     GameManager GameManager => GameManager.GMinstance();
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class MiddleWall : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(rayObj.transform.position, rayObj.transform.up, Color.red, 0);
-        boundaries = Physics2D.Raycast(rayObj.transform.position, rayObj.transform.up, 50, boolLayer);
+        boundaries = Physics2D.Raycast(rayObj.transform.position, rayObj.transform.up, 50, ballLayer);
         
         if (boundaries && sensingNum == 0)
         {
@@ -30,6 +32,15 @@ public class MiddleWall : MonoBehaviour
             Debug.Log("반응");
             StartCoroutine(Wall1());
             StartCoroutine(Wall2()); 
+        }
+        if(!boundaries && sensingNum == 1)
+        {
+            sensingNum++;
+        }
+        if(sensingNum == 2 && boundaries)
+        {
+            ball.transform.position = ballPosInit.position;
+            sensingNum = 0;
         }
         
     }
