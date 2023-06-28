@@ -38,7 +38,7 @@ public class BallTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(transform.position);
+
         hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x + 0.1f, Vector2.zero, 0, targetLayer);
         if (hit)
         {
@@ -48,6 +48,7 @@ public class BallTester : MonoBehaviour
                 {
                     if (!isPlayerAtached)
                     {
+                        CC.enabled = false;
                         GameManager.GMinstance().GameOver(playerSCR.isPlayerOne);
                         rb.velocity = Vector2.zero;
                     }
@@ -75,7 +76,7 @@ public class BallTester : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7)
         {
             SoundManager.soundManager.SFXSound("Bounce", bounce);
         }

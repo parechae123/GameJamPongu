@@ -45,6 +45,7 @@ public class SoundManager : MonoBehaviour
         GameObject go = new GameObject(name + "Sound");
         AudioSource audioSource = go.AddComponent<AudioSource>();
         audioSource.clip = clip;
+        audioSource.playOnAwake = false;
         audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFXSoundVolume")[0];
         audioSource.Play();
 

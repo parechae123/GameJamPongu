@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Stats[] plrOriginStat = new Stats[2];
     public BallTester BallSCR;
     private bool BallInvisible = true;
+    public Transform ballPosInit;
     public static GameManager GMinstance()
     {
         return GM;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         UIManager.UIinstance().ChangeScore(playerScore[0], playerScore[1],isPlayerOne);
         //����ȯ �߰� �Ŀ� ���ݱ� ���� �������,attackplayerü������ �ʿ�
         attackInfo.attackTurn = true;
+        Debug.Log("GameOver");
         if (attackInfo.attackPlayer != attackInfo.Players[0])
         {
             attackInfo.attackPlayer = attackInfo.Players[0];
@@ -56,9 +58,12 @@ public class GameManager : MonoBehaviour
             attackInfo.attackPlayer = attackInfo.Players[1];
         }
         ResetStat();
+        ball.transform.position = ballPosInit.position;
+
     }
     public void AttackerChange()
     {
+        Debug.Log("ATTKChange");
         if (attackInfo.attackPlayer != attackInfo.Players[0])
         {
             attackInfo.attackPlayer = attackInfo.Players[0];

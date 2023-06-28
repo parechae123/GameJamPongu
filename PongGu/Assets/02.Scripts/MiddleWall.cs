@@ -33,19 +33,26 @@ public class MiddleWall : MonoBehaviour
             StartCoroutine(Wall1());
             StartCoroutine(Wall2()); 
         }
-        if(!boundaries && sensingNum == 1)
+        else if(!boundaries && sensingNum == 1)
         {
             sensingNum++;
+            Debug.Log("Censer");
+
         }
-        if(sensingNum == 2 && boundaries)
+        else if (sensingNum == 2 && boundaries)
         {
+            for (int i = 0; i < wall.Length; i++)
+            {
+                wall[i].gameObject.SetActive(false);
+            }
             Debug.Log("¾Ó");
             ballSCR.rb.velocity = Vector2.zero;
             ball.transform.position = ballPosInit.position;
             ballSCR.CC.enabled = false;
             ballSCR.isPlayerAtached = true;
-            GameManager.GMinstance().AttackerChange();
             sensingNum = 0;
+            GameManager.AttackerChange();
+
         }
     }
     public IEnumerator Wall1()
