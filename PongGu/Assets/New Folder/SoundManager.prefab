@@ -48,6 +48,7 @@ MonoBehaviour:
   bgm:
   - {fileID: 8300000, guid: c695154230656fe4db99a3cc9bc47b5f, type: 3}
   - {fileID: 8300000, guid: c15dbf4101b409f4092bf4c599b84eef, type: 3}
+  - {fileID: 8300000, guid: 02cdf894672b0464d8a4a529862fc919, type: 3}
   bgSound: {fileID: 4856998609196819547}
   mixer: {fileID: 24100000, guid: 53a5fbfb30c99414ea6497a5bcc1064e, type: 2}
 --- !u!82 &4856998609196819547

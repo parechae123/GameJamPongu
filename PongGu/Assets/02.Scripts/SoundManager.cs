@@ -5,14 +5,16 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 public class SoundManager : MonoBehaviour
 {
-    static SoundManager soundManager;
+    public static SoundManager soundManager;
     public AudioClip[] bgm;
     public AudioSource bgSound;
     public AudioMixer mixer;
-    // Start is called before the first frame update
+
+
+
     void Awake()
     {
-        if(soundManager == null)
+        if (soundManager == null)
         {
             soundManager = this;
             DontDestroyOnLoad(soundManager);
@@ -23,25 +25,18 @@ public class SoundManager : MonoBehaviour
     {
         for (int i = 0; i < bgm.Length; i++)
         {
-            if(arg0.name == bgm[i].name)
+            if (arg0.name == bgm[i].name)
             {
                 BGMSound(bgm[i]);
             }
 
         }
     }
-    public void SFXVoulum(float val)
-    {
-        mixer.SetFloat("BGMSoundVolum", Mathf.Log10(val) * 20);
-    }
-    public void BGMVoulum(float val)
-    {
-        mixer.SetFloat("SFXSoundVolum", Mathf.Log10(val) * 20);
-    }
+
     public void BGMSound(AudioClip clip)
     {
         bgSound.clip = clip;
-        bgSound.outputAudioMixerGroup = mixer.FindMatchingGroups("BGMSoundVolum")[0];
+        bgSound.outputAudioMixerGroup = mixer.FindMatchingGroups("BGMSoundVolume")[0];
         bgSound.loop = true;
         bgSound.Play();
     }
@@ -50,9 +45,37 @@ public class SoundManager : MonoBehaviour
         GameObject go = new GameObject(name + "Sound");
         AudioSource audioSource = go.AddComponent<AudioSource>();
         audioSource.clip = clip;
-        audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFXSoundVolum")[0];
+        audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("SFXSoundVolume")[0];
         audioSource.Play();
 
         Destroy(go, clip.length);
     }
+
+
+
+    public void SetBGMVolume(float volume)
+    {
+        if (volume > 0)
+        {
+            mixer.SetFloat("BGMSoundVolume", Mathf.Log10(volume) * 20);
+
+        }
+        else
+        {
+            mixer.SetFloat("BGMSoundVolume", Mathf.Log10(-80));
+        }
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        if (volume > 0)
+        {
+            mixer.SetFloat("SFXSoundVolume", Mathf.Log10(volume) * 20);
+        }
+        else
+        {
+            mixer.SetFloat("SFXSoundVolume", Mathf.Log10(-80));
+        }
+    }
+
 }
