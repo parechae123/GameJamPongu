@@ -59,13 +59,16 @@ public class GameManager : MonoBehaviour
     }
     public void AttackerChange()
     {
+
         if (attackInfo.attackPlayer != attackInfo.Players[0])
         {
             attackInfo.attackPlayer = attackInfo.Players[0];
+            UIManager.UIinstance().ChangeScore(playerScore[0], playerScore[1], true);
         }
         else
         {
             attackInfo.attackPlayer = attackInfo.Players[1];
+            UIManager.UIinstance().ChangeScore(playerScore[0], playerScore[1], false);
         }
         attackInfo.attackTurn = true;
         ResetStat();

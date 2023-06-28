@@ -12,7 +12,7 @@ public class AttackTurnBall : ItemBase
 {
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/FirstAttack";
         ItemIndex = 0;
         
     }
@@ -28,7 +28,7 @@ public class BigBall : ItemBase
 {
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/BallBigger";
         ItemIndex = 1;
 
     }
@@ -44,7 +44,7 @@ public class BallInvisible : ItemBase
 {
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/InvisibleBall";
         ItemIndex = 2;
 
     }
@@ -58,7 +58,7 @@ public class BallFaster : ItemBase
 {
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/BallSpeed";
         ItemIndex = 3;
 
     }
@@ -76,7 +76,7 @@ public class PlayerSlower : ItemBase
     //target == enemy
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/PlayerSlower";
         ItemIndex = 4;
 
     }
@@ -93,7 +93,7 @@ public class WallRestore : ItemBase
     //target == enemy
     public override void IdentitySetting()
     {
-        ImagePath = "";
+        ImagePath = "ItemIcons/repairWall";
         ItemIndex = 5;
 
     }

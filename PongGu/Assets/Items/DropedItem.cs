@@ -8,6 +8,10 @@ public class DropedItem : MonoBehaviour
     private bool isUsed = false;
     
     RaycastHit2D hit;
+    private void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(itemInfo.ImagePath);
+    }
     private void Update()
     {
         if (!isUsed)

@@ -92,27 +92,27 @@ public class Player : MonoBehaviour
                         if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
                         else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
                         else if (ball.transform.position.y < -3.5f && Input.GetAxisRaw("Vertical") > 0)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
@@ -159,27 +159,27 @@ public class Player : MonoBehaviour
                         if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);//아크탄제트로 연산하고 화살표로 바꿔야함
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
                         else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical2") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);//아크탄제트로 연산하고 화살표로 바꿔야함
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
                         else if (ball.transform.position.y < -3.5f && Input.GetAxisRaw("Vertical2") > 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
-                            BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
+                            BallRot = Mathf.Clamp(BallRot, BC.bounds.size.x *- 1.3f, BC.bounds.size.x*1.3f);//아크탄제트로 연산하고 화살표로 바꿔야함
                             ballX = BallRot / 3;
-                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -1, 1));
+                            ballX = Mathf.Abs(Mathf.Clamp(ballX, -BC.bounds.size.x*0.319f, BC.bounds.size.x*0.319f));
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
