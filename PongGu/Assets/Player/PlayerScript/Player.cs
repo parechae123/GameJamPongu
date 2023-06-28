@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public bool isPlayerOne;
     private float playerAxis;
     public Rigidbody2D rb;
-    public BoxCollider2D BC;
+    public Collider2D BC;
     public bool isAimingBall = false;
     public int AttackKey;
     public Stats nowStat;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        BC = GetComponent<BoxCollider2D>();
+        BC = GetComponent<Collider2D>();
         if (isPlayerOne)
         {
             playerAxis = 1;
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftControl))
                     {
-                        if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
+                        if (ball.transform.position.y > -4.13f && ball.transform.position.y < 4.13f)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical") < 0)
+                        else if (ball.transform.position.y > 4.13f && Input.GetAxisRaw("Vertical") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
@@ -132,6 +132,7 @@ public class Player : MonoBehaviour
                         ball.Init(new Vector3(ballDir.x, ballDir.y, ballDir.z), this.gameObject);
                         rb.isKinematic = false;
                         BallRot = 0;
+                        GameManager.GMinstance().ResetStat();
                     } 
                 }
                 break;
@@ -152,7 +153,7 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.Slash))
                     {
-                        if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
+                        if (ball.transform.position.y > -4.13f && ball.transform.position.y < 4.13f)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -161,7 +162,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical") < 0)
+                        else if (ball.transform.position.y > 4.13f && Input.GetAxisRaw("Vertical2") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y < -3.5f && Input.GetAxisRaw("Vertical") > 0)
+                        else if (ball.transform.position.y < -4.13f && Input.GetAxisRaw("Vertical2") > 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -196,6 +197,7 @@ public class Player : MonoBehaviour
                         ball.Init(new Vector3(ballDir.x, ballDir.y, ballDir.z), this.gameObject);
                         rb.isKinematic = false;
                         BallRot = 0;
+                        GameManager.GMinstance().ResetStat();
                     } 
                 }
                 break;

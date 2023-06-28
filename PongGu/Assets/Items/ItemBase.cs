@@ -21,6 +21,7 @@ public class AttackTurnBall : ItemBase
         /*        GameManager.GMinstance().ItemTargetOBJ(targetPlayer);*/
         //아이템 효과
         GameManager.GMinstance().SetPlayer(targetPlayer);
+        
     }
 }
 public class BigBall : ItemBase

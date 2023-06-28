@@ -28,9 +28,30 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    public void ChangeScore(byte plrOneScore,byte plrTwoScore)
+    public void ChangeScore(byte plrOneScore,byte plrTwoScore,bool isPlrOne)
     {
         scoreText[0].text = plrOneScore.ToString();
         scoreText[1].text = plrTwoScore.ToString();
+        if (isPlrOne)
+        {
+            scoreText[0].fontStyle = FontStyles.Underline;
+            scoreText[1].fontStyle = FontStyles.Normal;
+        }
+        else
+        {
+            scoreText[1].fontStyle = FontStyles.Underline;
+            scoreText[0].fontStyle = FontStyles.Normal;
+        }
+    }
+    public void FirstAttackItem(bool isPlayerOne)
+    {
+        if (isPlayerOne)
+        {
+            scoreText[0].fontStyle = FontStyles.Underline;
+        }
+        else
+        {
+            scoreText[1].fontStyle = FontStyles.Underline;
+        }
     }
 }

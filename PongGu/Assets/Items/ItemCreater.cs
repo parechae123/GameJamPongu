@@ -8,7 +8,7 @@ public class ItemCreater : MonoBehaviour
 {
     public Dictionary<int,ItemBase> ItemList = new Dictionary<int, ItemBase>();
     public string aing;
-    private float itemCreateTime = 6;
+    [SerializeField]private float itemCreateTime = 10;
     private float timer;
     public int itemRandomValue;
     public Vector3 ItemPosition;
@@ -29,17 +29,13 @@ public class ItemCreater : MonoBehaviour
         }
         ItemPosition.x = Random.Range(minPosition.x, maxPosition.x);
         ItemPosition.y = Random.Range(minPosition.y, maxPosition.y);
-        GameObject te1 = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
-        te1.GetComponent<DropedItem>().itemInfo = ItemList[2];
-        GameObject te2 = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
-        te2.GetComponent<DropedItem>().itemInfo = ItemList[2];
         GameObject OBJTemp = Instantiate(Resources.Load<GameObject>("LoadGameObjects/Item"), ItemPosition, Quaternion.identity);
         OBJTemp.GetComponent<DropedItem>().itemInfo = ItemList[0];
     }
     private void Update()
     {
         timer += Time.deltaTime;
-        if (timer > itemCreateTime)
+        if (timer > itemCreateTime&&!GameManager.GMinstance().attackInfo.attackTurn)
         {
             timer = 0;
             itemRandomValue = Random.Range(1, ItemList.Count);
