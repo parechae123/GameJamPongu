@@ -23,7 +23,6 @@ public class MiddleWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(rayObj.transform.position, rayObj.transform.up, Color.red, 0);
         boundaries = Physics2D.Raycast(rayObj.transform.position, rayObj.transform.up, 50, ballLayer);
         
         if (boundaries && sensingNum == 0)
@@ -46,31 +45,20 @@ public class MiddleWall : MonoBehaviour
     }
     public IEnumerator Wall1()
     {
-
-        GameObject temp = Instantiate(wall[1], wall[1].transform.position, wall[1].transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        GameObject temp = wall[0];
+        temp.gameObject.SetActive(true);
         sequence = DOTween.Sequence();
         sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
         sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
-
-        yield return new WaitForSeconds(0.5f);
-        if (!temp.TryGetComponent<BoxCollider2D>(out BoxCollider2D bc2))
-        {
-            temp.AddComponent<BoxCollider2D>();
-        }
-        
     }
     public IEnumerator Wall2()
     {
-        GameObject temp = Instantiate(wall[0], wall[0].transform.position, wall[0].transform.rotation);
+        yield return new WaitForSeconds(0.5f);
+        GameObject temp = wall[1];
+        temp.gameObject.SetActive(true);
         sequence = DOTween.Sequence();
         sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
         sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
-
-        yield return new WaitForSeconds(0.5f);
-        if (!temp.TryGetComponent<BoxCollider2D>(out BoxCollider2D bc2))
-        {
-            temp.AddComponent<BoxCollider2D>();
-        }
-        
     }
 }

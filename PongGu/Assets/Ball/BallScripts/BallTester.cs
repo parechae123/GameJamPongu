@@ -12,6 +12,8 @@ public class BallTester : MonoBehaviour
     public Stats BallOriginStat;
     public bool isPlayerAtached = false;
     public GameObject ThrowingPlayer;
+    public LayerMask targetLayer;
+    public Vector2 saveVector;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,37 +24,45 @@ public class BallTester : MonoBehaviour
         GameManager.GMinstance().ballStat = BallStat;
         GameManager.GMinstance().OriginBallStat = BallOriginStat;
         GameManager.GMinstance().ballSR = GetComponent<SpriteRenderer>();
+        
     }
     public void StatSetting()
     {
         BallOriginStat.size = transform.localScale;
-        BallOriginStat.speed = 6;
+        BallOriginStat.speed = 10;
         BallStat.size = BallOriginStat.size;
         BallStat.speed = BallOriginStat.speed;
     }
     // Update is called once per frame
     void Update()
     {
-        hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x + 0.1f, Vector2.zero, 0, 8);
+        hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x + 0.1f, Vector2.zero, 0, targetLayer);
         if (hit)
         {
-            if(hit.collider.TryGetComponent<Player>(out Player playerSCR)&&hit.collider.gameObject != ThrowingPlayer)
+            if (hit.collider.gameObject != ThrowingPlayer && hit.collider.gameObject.layer == 3)
             {
-                if (!isPlayerAtached)
+                if (hit.collider.TryGetComponent<Player>(out Player playerSCR))
                 {
-                    GameManager.GMinstance().GameOver(playerSCR.isPlayerOne);
-                }
-                isPlayerAtached = true;
+                    if (!isPlayerAtached)
+                    {
+                        GameManager.GMinstance().GameOver(playerSCR.isPlayerOne);
+                        rb.velocity = Vector2.zero;
+                    }
+                    isPlayerAtached = true;
+                    
+                } 
+            }
+            else if(hit.collider.gameObject.layer==7)
+            {
+                saveVector = rb.velocity;
             }
         }
     }
-
-
     public void Init(Vector3 BallRot,GameObject throwingPlr)
     {
         GameManager.GMinstance().attackInfo.attackTurn = false;
         ThrowingPlayer = throwingPlr;
         isPlayerAtached = false;
-        rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized* BallStat.speed;
+        rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized * BallStat.speed;
     }
 }
