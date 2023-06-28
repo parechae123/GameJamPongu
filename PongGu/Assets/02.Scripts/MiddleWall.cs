@@ -38,6 +38,7 @@ public class MiddleWall : MonoBehaviour
         }
         if(sensingNum == 2 && boundaries)
         {
+            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             ball.transform.position = ballPosInit.position;
             sensingNum = 0;
         }
@@ -45,20 +46,20 @@ public class MiddleWall : MonoBehaviour
     }
     public IEnumerator Wall1()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         GameObject temp = wall[0];
         temp.gameObject.SetActive(true);
         sequence = DOTween.Sequence();
-        sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
-        sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
+        sequence.Append(temp.transform.DOScale(new Vector2(0.5f, 0.5f), 0.7f));
+        sequence.Append(temp.transform.DOScale(new Vector2(0.4f, 0.4f), 0.3f));
     }
     public IEnumerator Wall2()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         GameObject temp = wall[1];
         temp.gameObject.SetActive(true);
         sequence = DOTween.Sequence();
-        sequence.Append(temp.transform.DOScale(new Vector2(1.3f, 1.3f), 0.7f));
-        sequence.Append(temp.transform.DOScale(new Vector2(1, 1), 0.3f));
+        sequence.Append(temp.transform.DOScale(new Vector2(0.5f, 0.5f), 0.7f));
+        sequence.Append(temp.transform.DOScale(new Vector2(0.4f, 0.4f), 0.3f));
     }
 }
