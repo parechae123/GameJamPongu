@@ -33,5 +33,6 @@ public class Wall : MonoBehaviour
     {
         wallHp = 1;
     }
+   
     //새로운 함수 추가 필요 if(Activeself)가 트루일 때만 실행이 되는 걸 만들기 이건 맵에 남아있는 벽만 HP가 올라가게 하기 위해
 }
