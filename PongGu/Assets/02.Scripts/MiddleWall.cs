@@ -8,6 +8,7 @@ public class MiddleWall : MonoBehaviour
     Sequence sequence;
     public GameObject rayObj;
     public GameObject ball;
+    public BallTester ballSCR;
     public bool boundaries;
     public LayerMask ballLayer;
     public int sensingNum;      //레이캐스트 감지되는 횟수
@@ -17,7 +18,7 @@ public class MiddleWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ballSCR = ball.GetComponent<BallTester>();
     }
 
     // Update is called once per frame
@@ -38,8 +39,12 @@ public class MiddleWall : MonoBehaviour
         }
         if(sensingNum == 2 && boundaries)
         {
-            ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Debug.Log("앙");
+            ballSCR.rb.velocity = Vector2.zero;
             ball.transform.position = ballPosInit.position;
+            ballSCR.CC.enabled = false;
+            ballSCR.isPlayerAtached = true;
+            GameManager.GMinstance().AttackerChange();
             sensingNum = 0;
         }
     }

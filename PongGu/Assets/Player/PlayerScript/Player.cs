@@ -88,7 +88,8 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftControl))
                     {
-                        if (ball.transform.position.y > -4.13f && ball.transform.position.y < 4.13f)
+                        ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
+                        if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
@@ -97,7 +98,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y > 4.13f && Input.GetAxisRaw("Vertical") < 0)
+                        else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);
@@ -123,6 +124,7 @@ public class Player : MonoBehaviour
                             ball.rb.velocity = Vector2.zero;
                             rb.velocity = Vector2.zero;
                             isAimingBall = true;
+                            ball.CC.enabled = true;
                         }
                     }
                     else if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -153,7 +155,8 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.Slash))
                     {
-                        if (ball.transform.position.y > -4.13f && ball.transform.position.y < 4.13f)
+                        ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
+                        if (ball.transform.position.y > -3.5f && ball.transform.position.y < 3.5f)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -162,7 +165,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y > 4.13f && Input.GetAxisRaw("Vertical2") < 0)
+                        else if (ball.transform.position.y > 3.5f && Input.GetAxisRaw("Vertical2") < 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -171,7 +174,7 @@ public class Player : MonoBehaviour
                             ballX = ballX * -playerAxis;
                             ball.transform.position = new Vector3(transform.position.x + (BC.bounds.size.x * playerAxis) + ballX, BallRot + transform.position.y, transform.position.z);
                         }
-                        else if (ball.transform.position.y < -4.13f && Input.GetAxisRaw("Vertical2") > 0)
+                        else if (ball.transform.position.y < -3.5f && Input.GetAxisRaw("Vertical2") > 0)
                         {
                             BallRot += Input.GetAxis("Vertical2") * Time.deltaTime;
                             BallRot = Mathf.Clamp(BallRot, -1.5f, 1.5f);//아크탄제트로 연산하고 화살표로 바꿔야함
@@ -188,6 +191,7 @@ public class Player : MonoBehaviour
                             ball.rb.velocity = Vector2.zero;
                             rb.velocity = Vector2.zero;
                             isAimingBall = true;
+                            ball.CC.enabled = true;
                         }
                     }
                     else if (Input.GetKeyUp(KeyCode.Slash))

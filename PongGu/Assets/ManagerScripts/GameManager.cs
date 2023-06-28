@@ -57,6 +57,19 @@ public class GameManager : MonoBehaviour
         }
         ResetStat();
     }
+    public void AttackerChange()
+    {
+        if (attackInfo.attackPlayer != attackInfo.Players[0])
+        {
+            attackInfo.attackPlayer = attackInfo.Players[0];
+        }
+        else
+        {
+            attackInfo.attackPlayer = attackInfo.Players[1];
+        }
+        attackInfo.attackTurn = true;
+        ResetStat();
+    }
     public void ResetStat()
     {
         plrStat[0].size = plrOriginStat[0].size;
