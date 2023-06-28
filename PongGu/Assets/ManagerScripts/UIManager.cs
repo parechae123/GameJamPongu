@@ -28,13 +28,13 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-    public void ChangeScore(byte plrOneScore,byte plrTwoScore,bool isPlrOne)
+    public void ChangeScore(byte plrOneScore,byte plrTwoScore,bool isPlrOne)        //점수 관련 코드
     {
         scoreText[0].text = plrOneScore.ToString();
         scoreText[1].text = plrTwoScore.ToString();
         if (isPlrOne)
         {
-            scoreText[0].fontStyle = FontStyles.Underline;
+            scoreText[0].fontStyle = FontStyles.Underline;      
             scoreText[1].fontStyle = FontStyles.Normal;
         }
         else

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     
-    public static int wallHp = 1;
+    public int wallHp = 1;
     // Start is called before the first frame update
     void Start()
     {
