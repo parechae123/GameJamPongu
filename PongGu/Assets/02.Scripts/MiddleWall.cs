@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class MiddleWall : MonoBehaviour
 {
+    public static MiddleWall middleWall;
     public GameObject[] wall = new GameObject[2];
     Sequence sequence;
     public GameObject rayObj;
@@ -16,6 +17,13 @@ public class MiddleWall : MonoBehaviour
 
     GameManager GameManager => GameManager.GMinstance();
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if(middleWall == null)
+        {
+            middleWall = this;
+        }
+    }
     void Start()
     {
         ballSCR = ball.GetComponent<BallTester>();
@@ -41,19 +49,24 @@ public class MiddleWall : MonoBehaviour
         }
         else if (sensingNum == 2 && boundaries)
         {
-            for (int i = 0; i < wall.Length; i++)
-            {
-                wall[i].gameObject.SetActive(false);
-            }
+            
             Debug.Log("¾Ó");
-            ballSCR.rb.velocity = Vector2.zero;
-            ball.transform.position = ballPosInit.position;
-            ballSCR.CC.enabled = false;
-            ballSCR.isPlayerAtached = true;
-            sensingNum = 0;
+            WallInit();
             GameManager.AttackerChange();
 
         }
+    }
+    public void WallInit()
+    {
+        for (int i = 0; i < wall.Length; i++)
+        {
+            wall[i].gameObject.SetActive(false);
+        }
+        ballSCR.rb.velocity = Vector2.zero;
+        ball.transform.position = ballPosInit.position;
+        ballSCR.CC.enabled = false;
+        ballSCR.isPlayerAtached = true;
+        sensingNum = 0;
     }
     public IEnumerator Wall1()
     {

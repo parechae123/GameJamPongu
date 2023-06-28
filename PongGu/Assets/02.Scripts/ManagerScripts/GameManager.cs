@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Stats[] plrOriginStat = new Stats[2];
     public BallTester BallSCR;
     private bool BallInvisible = true;
+    public int bounceNum;
+
     public static GameManager GMinstance()
     {
         return GM;
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResetStat()
     {
+        bounceNum = 0;
         plrStat[0].size = plrOriginStat[0].size;
         plrStat[0].speed = plrOriginStat[0].speed;
         attackInfo.Players[0].transform.localScale = plrOriginStat[0].size;

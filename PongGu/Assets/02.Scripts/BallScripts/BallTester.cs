@@ -15,6 +15,7 @@ public class BallTester : MonoBehaviour
     public LayerMask targetLayer;
     public Vector2 saveVector;
     public AudioClip bounce;
+    public AudioClip playerDie;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,7 @@ public class BallTester : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         hit = Physics2D.CircleCast(transform.position, CC.bounds.extents.x + 0.1f, Vector2.zero, 0, targetLayer);
         if (hit)
         {
@@ -48,9 +49,11 @@ public class BallTester : MonoBehaviour
                 {
                     if (!isPlayerAtached)
                     {
+                        SoundManager.soundManager.SFXSound("Die", playerDie);
                         CC.enabled = false;
                         GameManager.GMinstance().GameOver(playerSCR.isPlayerOne);
                         rb.velocity = Vector2.zero;
+                        MiddleWall.middleWall.WallInit();
                     }
                     isPlayerAtached = true;
                     
@@ -60,6 +63,11 @@ public class BallTester : MonoBehaviour
             {
                 saveVector = rb.velocity;
             }
+        }
+        if(GameManager.GMinstance().bounceNum >= 15)
+        {
+            GameManager.GMinstance().AttackerChange();
+            MiddleWall.middleWall.WallInit();
         }
     }
     public void Init(Vector3 BallRot,GameObject throwingPlr)
@@ -79,6 +87,7 @@ public class BallTester : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             SoundManager.soundManager.SFXSound("Bounce", bounce);
+            GameManager.GMinstance().bounceNum++;
         }
     }
 
