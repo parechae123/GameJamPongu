@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public SpriteRenderer ballSR;
     [SerializeField]public Stats[] plrStat = new Stats[2];
     [SerializeField] public Stats[] plrOriginStat = new Stats[2];
+    public BallTester BallSCR;
     private bool BallInvisible = true;
     public static GameManager GMinstance()
     {
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
     {
         attackInfo.attackPlayer = player;
         attackInfo.attackTurn = true;
-        if(attackInfo.attackPlayer == attackInfo.Players[0])
+        if (attackInfo.attackPlayer == attackInfo.Players[0])
         {
             UIManager.UIinstance().FirstAttackItem(true);
         }
@@ -119,6 +120,11 @@ public class GameManager : MonoBehaviour
         {
             UIManager.UIinstance().FirstAttackItem(false);
         }
+    }
+    public void BallSpeedSet()
+    {
+        ballStat.speed = OriginBallStat.speed * 1.5f;
+        BallSCR.SetItemSpeed();
     }
     public IEnumerator InvisibleBalls()
     {

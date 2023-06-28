@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 108972604}
   - component: {fileID: 108972605}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TopWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,6 +853,7 @@ MonoBehaviour:
     size: {x: 0, y: 0, z: 0}
   - speed: 0
     size: {x: 0, y: 0, z: 0}
+  BallSCR: {fileID: 0}
 --- !u!4 &675542456
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,7 +1547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1695783818}
   - component: {fileID: 1695783819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696887237}
   - component: {fileID: 1696887238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BottomWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1903,7 +1904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899622070}
   - component: {fileID: 1899622071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

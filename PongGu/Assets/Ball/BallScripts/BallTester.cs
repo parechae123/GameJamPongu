@@ -22,6 +22,7 @@ public class BallTester : MonoBehaviour
         BallOriginStat = new Stats();
         StatSetting();
         GameManager.GMinstance().ballStat = BallStat;
+        GameManager.GMinstance().BallSCR = this;
         GameManager.GMinstance().OriginBallStat = BallOriginStat;
         GameManager.GMinstance().ballSR = GetComponent<SpriteRenderer>();
         
@@ -64,5 +65,10 @@ public class BallTester : MonoBehaviour
         ThrowingPlayer = throwingPlr;
         isPlayerAtached = false;
         rb.velocity = new Vector2(BallRot.x,  BallRot.y).normalized * BallStat.speed;
+    }
+    public void SetItemSpeed()
+    {
+        Vector2 tempVec = Vector2.ClampMagnitude(saveVector * 1.5f, 15);
+        rb.velocity = tempVec;
     }
 }

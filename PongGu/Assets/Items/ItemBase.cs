@@ -66,7 +66,8 @@ public class BallFaster : ItemBase
     {
         /*        GameManager.GMinstance().ItemTargetOBJ(targetPlayer);*/
         //아이템 효과
-        GameManager.GMinstance().ballStat.speed = GameManager.GMinstance().OriginBallStat.speed * 1.5f;
+        GameManager.GMinstance().BallSpeedSet();
+
         Debug.Log("공 가속");
     }
 }
@@ -103,8 +104,4 @@ public class WallRestore : ItemBase
         Debug.Log(GameManager.GMinstance().ItemTargetOBJ(targetPlayer));
         Debug.Log("벽 복구");
     }
-}
-public class GenericItemTarget<T>
-{
-    public T TargetConvert;
 }
