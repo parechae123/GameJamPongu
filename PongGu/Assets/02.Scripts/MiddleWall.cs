@@ -42,7 +42,6 @@ public class MiddleWall : MonoBehaviour
             ball.transform.position = ballPosInit.position;
             sensingNum = 0;
         }
-        
     }
     public IEnumerator Wall1()
     {
