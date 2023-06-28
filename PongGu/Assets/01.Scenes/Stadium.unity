@@ -748,18 +748,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6935980122347092153, guid: a637347800c6631498eb018b2d5e6269, type: 3}
   m_PrefabInstance: {fileID: 6935980122715667799}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &369624562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369624558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70ee9ebbef010084fbedffeda5586ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &477272532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,18 +1142,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3914974176224301462, guid: 3e91b9d9b5bb7d942971ddee91ed60cb, type: 3}
   m_PrefabInstance: {fileID: 3914974176529467085}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1047566175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047566171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70ee9ebbef010084fbedffeda5586ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1091994796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2301,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   saveVector: {x: 0, y: 0}
+  bounce: {fileID: 8300000, guid: 0756fba365df2f54f918e4aabb27ba97, type: 3}
 --- !u!58 &2037715970
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class BallTester : MonoBehaviour
     public GameObject ThrowingPlayer;
     public LayerMask targetLayer;
     public Vector2 saveVector;
+    public AudioClip bounce;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,4 +73,13 @@ public class BallTester : MonoBehaviour
         Vector2 tempVec = Vector2.ClampMagnitude(saveVector * 1.5f, 15);
         rb.velocity = tempVec;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 7)
+        {
+            SoundManager.soundManager.SFXSound("Bounce", bounce);
+        }
+    }
+
+
 }
