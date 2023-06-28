@@ -43,8 +43,7 @@ public class GameManager : MonoBehaviour
         {
             playerScore[1] += 1;
         }
-        UIManager.UIinstance().scoreText[0].text = playerScore[0].ToString();
-        UIManager.UIinstance().scoreText[1].text = playerScore[1].ToString();
+        UIManager.UIinstance().ChangeScore(playerScore[0], playerScore[1],isPlayerOne);
         //����ȯ �߰� �Ŀ� ���ݱ� ���� �������,attackplayerü������ �ʿ�
         attackInfo.attackTurn = true;
         if (attackInfo.attackPlayer != attackInfo.Players[0])
@@ -66,6 +65,8 @@ public class GameManager : MonoBehaviour
         plrStat[1].speed = plrOriginStat[1].speed;
         attackInfo.Players[1].transform.localScale = plrOriginStat[1].size;
         ballStat.speed = OriginBallStat.speed;
+        ball.transform.localScale = OriginBallStat.size;
+        ballStat.size = OriginBallStat.size;
         StopCoroutine(InvisibleBalls());
         BallInvisible = true;
     }
@@ -110,6 +111,14 @@ public class GameManager : MonoBehaviour
     {
         attackInfo.attackPlayer = player;
         attackInfo.attackTurn = true;
+        if(attackInfo.attackPlayer == attackInfo.Players[0])
+        {
+            UIManager.UIinstance().FirstAttackItem(true);
+        }
+        else
+        {
+            UIManager.UIinstance().FirstAttackItem(false);
+        }
     }
     public IEnumerator InvisibleBalls()
     {
